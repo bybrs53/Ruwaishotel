@@ -7,44 +7,161 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
-        :root { --primary: #1a1a2e; --secondary: #16213e; --accent: #c9a227; --gold-light: #e8d5a3; --text: #f0f0f0; --text-muted: #a0a0a0; --bg-dark: #0f0f1a; --card-bg: rgba(26, 26, 46, 0.95); }
+        :root { 
+            --primary: #1a1a2e; 
+            --secondary: #16213e; 
+            --accent: #c9a227; 
+            --gold-light: #e8d5a3; 
+            --text: #f0f0f0; 
+            --text-muted: #a0a0a0; 
+            --bg-dark: #0f0f1a; 
+            --card-bg: rgba(26, 26, 46, 0.95); 
+        }
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; }
-        body { font-family: 'Montserrat', sans-serif; background: linear-gradient(135deg, var(--bg-dark) 0%, var(--secondary) 50%, var(--primary) 100%); background-attachment: fixed; min-height: 100vh; color: var(--text); padding-bottom: 100px; }
-        .header { text-align: center; padding: 50px 20px 40px; background: linear-gradient(180deg, rgba(201, 162, 39, 0.2) 0%, transparent 100%); border-bottom: 1px solid rgba(201, 162, 39, 0.3); position: relative; }
+        html { 
+            scroll-behavior: smooth; 
+            scroll-padding-top: 85px; 
+        }
+        body { 
+            font-family: 'Montserrat', sans-serif; 
+            background: linear-gradient(135deg, var(--bg-dark) 0%, var(--secondary) 50%, var(--primary) 100%); 
+            background-attachment: fixed; 
+            min-height: 100vh; 
+            color: var(--text); 
+            padding-bottom: 100px; 
+        }
+        .header { 
+            text-align: center; 
+            padding: 50px 20px 40px; 
+            background: linear-gradient(180deg, rgba(201, 162, 39, 0.2) 0%, transparent 100%); 
+            border-bottom: 1px solid rgba(201, 162, 39, 0.3); 
+            position: relative; 
+        }
         .header::before { content: '✦ ✦ ✦'; position: absolute; top: 20px; left: 50%; transform: translateX(-50%); color: var(--accent); font-size: 12px; letter-spacing: 15px; }
         .logo { font-family: 'Playfair Display', serif; font-size: 3.2rem; font-weight: 700; color: var(--accent); letter-spacing: 8px; text-transform: uppercase; margin-bottom: 10px; text-shadow: 0 4px 30px rgba(201, 162, 39, 0.4); }
         .subtitle { font-size: 0.9rem; color: var(--text-muted); letter-spacing: 8px; text-transform: uppercase; font-weight: 300; }
-        .category-nav { position: sticky; top: 0; background: rgba(15, 15, 26, 0.98); backdrop-filter: blur(20px); z-index: 100; padding: 15px 10px; border-bottom: 1px solid rgba(201, 162, 39, 0.2); overflow-x: auto; white-space: nowrap; scrollbar-width: none; }
+        
+        .category-nav { 
+            position: sticky; 
+            top: 0; 
+            background: rgba(15, 15, 26, 0.98); 
+            backdrop-filter: blur(20px); 
+            z-index: 100; 
+            padding: 15px 10px; 
+            border-bottom: 1px solid rgba(201, 162, 39, 0.2); 
+            overflow-x: auto; 
+            white-space: nowrap; 
+            scrollbar-width: none; 
+        }
         .category-nav::-webkit-scrollbar { display: none; }
         .nav-container { display: inline-flex; gap: 10px; padding: 0 10px; }
-        .nav-btn { padding: 12px 20px; background: transparent; border: 1px solid rgba(201, 162, 39, 0.4); color: var(--text-muted); border-radius: 30px; font-size: 0.75rem; font-weight: 500; letter-spacing: 1px; text-transform: uppercase; cursor: pointer; transition: all 0.3s ease; font-family: 'Montserrat', sans-serif; white-space: nowrap; }
-        .nav-btn:hover, .nav-btn.active { background: linear-gradient(135deg, var(--accent) 0%, #d4af37 100%); color: var(--primary); border-color: var(--accent); box-shadow: 0 4px 20px rgba(201, 162, 39, 0.4); transform: translateY(-2px); }
+        .nav-btn { 
+            display: inline-block;
+            text-decoration: none;
+            padding: 12px 20px; 
+            background: transparent; 
+            border: 1px solid rgba(201, 162, 39, 0.4); 
+            color: var(--text-muted); 
+            border-radius: 30px; 
+            font-size: 0.75rem; 
+            font-weight: 500; 
+            letter-spacing: 1px; 
+            text-transform: uppercase; 
+            cursor: pointer; 
+            transition: all 0.3s ease; 
+            font-family: 'Montserrat', sans-serif; 
+            white-space: nowrap;Tracker
+        }
+        .nav-btn:hover, .nav-btn.active { 
+            background: linear-gradient(135deg, var(--accent) 0%, #d4af37 100%); 
+            color: var(--primary) !important; 
+            border-color: var(--accent); 
+            box-shadow: 0 4px 20px rgba(201, 162, 39, 0.4); 
+            transform: translateY(-2px); 
+        }
+        
         .menu-container { max-width: 800px; margin: 0 auto; padding: 30px 20px; }
-        .category-section { margin-bottom: 50px; scroll-margin-top: 90px; }
+        .category-section { margin-bottom: 50px; }
         .category-header { text-align: center; margin-bottom: 30px; padding: 25px 0; position: relative; }
         .category-header::before, .category-header::after { content: ''; position: absolute; top: 50%; width: 80px; height: 1px; background: linear-gradient(90deg, transparent, var(--accent), transparent); }
         .category-header::before { left: 10%; }
         .category-header::after { right: 10%; }
         .category-icon { font-size: 2.2rem; margin-bottom: 12px; display: block; }
         .category-title { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 600; color: var(--accent); letter-spacing: 4px; text-transform: uppercase; }
+        
         .menu-items { display: grid; gap: 12px; }
         .menu-item { display: flex; justify-content: space-between; align-items: center; padding: 20px 25px; background: var(--card-bg); border-radius: 15px; border: 1px solid rgba(201, 162, 39, 0.1); transition: all 0.3s ease; }
         .menu-item:hover { transform: translateX(8px); border-color: rgba(201, 162, 39, 0.5); box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3); }
         .item-name { font-size: 1rem; font-weight: 500; color: var(--text); flex: 1; }
         .item-dots { flex: 1; border-bottom: 2px dotted rgba(201, 162, 39, 0.25); margin: 0 20px; min-width: 40px; }
         .item-price { font-family: 'Playfair Display', serif; font-size: 1.15rem; font-weight: 600; color: var(--accent); white-space: nowrap; }
+        
+        /* İkram Bilgi Kutusu */
+        .complimentary-box {
+            background: rgba(201, 162, 39, 0.1);
+            border: 1px dashed var(--accent);
+            border-radius: 12px;
+            padding: 15px;
+            text-align: center;
+            font-size: 0.85rem;
+            color: var(--gold-light);
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+            line-height: 1.4;
+        }
+
+        /* Sabit Yorum Yap Butonu */
+        .review-float-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 20px;
+            background: linear-gradient(135deg, var(--accent) 0%, #d4af37 100%);
+            color: var(--primary);
+            padding: 12px 20px;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            text-decoration: none;
+            box-shadow: 0 4px 20px rgba(201, 162, 39, 0.5);
+            z-index: 999;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+        }
+        .review-float-btn:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 6px 25px rgba(201, 162, 39, 0.7);
+        }
+
         .footer { text-align: center; padding: 50px 20px; color: var(--text-muted); font-size: 0.85rem; border-top: 1px solid rgba(201, 162, 39, 0.2); margin-top: 40px; }
         .footer-icon { font-size: 1.8rem; color: var(--accent); margin-bottom: 15px; }
-        @media (max-width: 600px) { .logo { font-size: 2.2rem; letter-spacing: 4px; } .menu-item { padding: 16px 18px; } .item-name { font-size: 0.9rem; } .item-price { font-size: 1rem; } .item-dots { margin: 0 12px; } }
+        .footer-link { color: var(--text-muted); text-decoration: none; transition: color 0.3s; display: inline-block; margin: 5px 0; }
+        .footer-link:hover { color: var(--accent); }
+        
+        @media (max-width: 600px) { 
+            .logo { font-size: 2.2rem; letter-spacing: 4px; } 
+            .menu-item { padding: 16px 18px; } 
+            .item-name { font-size: 0.9rem; } 
+            .item-price { font-size: 1rem; } 
+            .item-dots { margin: 0 12px; } 
+            .category-header::before, .category-header::after { width: 40px; }
+            .review-float-btn { bottom: 20px; right: 15px; padding: 10px 16px; font-size: 0.75rem; }
+        }
     </style>
 </head>
 <body>
     <header class="header">
         <h1 class="logo">RUWAIS</h1>
         <p class="subtitle">Lezzetin Adresi</p>
+        <a href="https://www.google.com/search?sca_esv=f8991862dc286373&rlz=1C1CHBD_trTR1109TR1109&sxsrf=APpeQnuV1RxzCIhpChxHImLvcBTEnbUAvg:1782245820305&q=RUWA%C4%B0SOTEL&si=APenkKm7iecQ4G6P-TsbSMFKIQtv3EFIqRAFw-i8uEbk55Z-_1U44qGaB18mIo7Fh8dw6gLJk6guSmpSCzmL8WWC2LjAGBwyInfTdDV1pjJ-0Mr8YK2OdjA%3D" target="_blank" style="color: var(--accent); text-decoration: none; font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase; margin-top: 15px; display: inline-block; border-bottom: 1px dashed var(--accent); padding-bottom: 2px;">
+            ⭐ Bizi Google'da Değerlendirin
+        </a>
     </header>
-    <nav class="category-nav">
+    
+    <nav class="category-nav" id="mainNav">
         <div class="nav-container">
             <a href="#top" class="nav-btn active">🏠 Ana Sayfa</a>
             <a href="#ana-yemek" class="nav-btn">🍽️ Ana Yemek</a>
@@ -72,6 +189,7 @@
             <a href="#minibar" class="nav-btn">🍫 Mini Bar</a>
         </div>
     </nav>
+    
     <main class="menu-container" id="top">
         <section class="category-section" id="ana-yemek"><div class="category-header"><span class="category-icon">🍽️</span><h2 class="category-title">Ana Yemek</h2></div><div class="menu-items"><div class="menu-item"><span class="item-name">Izgara Köfte</span><span class="item-dots"></span><span class="item-price">800 ₺</span></div><div class="menu-item"><span class="item-name">Kekikli Izgara Tavuk</span><span class="item-dots"></span><span class="item-price">700 ₺</span></div><div class="menu-item"><span class="item-name">Lokum Bonfile</span><span class="item-dots"></span><span class="item-price">1.300 ₺</span></div><div class="menu-item"><span class="item-name">Şinitzel Tavuk</span><span class="item-dots"></span><span class="item-price">750 ₺</span></div></div></section>
         <section class="category-section" id="burgerler"><div class="category-header"><span class="category-icon">🍔</span><h2 class="category-title">Burgerler</h2></div><div class="menu-items"><div class="menu-item"><span class="item-name">Cheeseburger</span><span class="item-dots"></span><span class="item-price">850 ₺</span></div><div class="menu-item"><span class="item-name">Chicken Burger</span><span class="item-dots"></span><span class="item-price">700 ₺</span></div><div class="menu-item"><span class="item-name">Ruwais Burger</span><span class="item-dots"></span><span class="item-price">950 ₺</span></div></div></section>
@@ -81,7 +199,23 @@
         <section class="category-section" id="ara-sicak"><div class="category-header"><span class="category-icon">🦐</span><h2 class="category-title">Ara Sıcak</h2></div><div class="menu-items"><div class="menu-item"><span class="item-name">Kalamar</span><span class="item-dots"></span><span class="item-price">800 ₺</span></div><div class="menu-item"><span class="item-name">Karides</span><span class="item-dots"></span><span class="item-price">800 ₺</span></div></div></section>
         <section class="category-section" id="snack"><div class="category-header"><span class="category-icon">🍟</span><h2 class="category-title">Snack</h2></div><div class="menu-items"><div class="menu-item"><span class="item-name">Çıtır Tavuk + Patates</span><span class="item-dots"></span><span class="item-price">650 ₺</span></div><div class="menu-item"><span class="item-name">Karışık Sepet</span><span class="item-dots"></span><span class="item-price">850 ₺</span></div><div class="menu-item"><span class="item-name">Trüflü Patates</span><span class="item-dots"></span><span class="item-price">500 ₺</span></div></div></section>
         <section class="category-section" id="tost"><div class="category-header"><span class="category-icon">🥪</span><h2 class="category-title">Tost</h2></div><div class="menu-items"><div class="menu-item"><span class="item-name">Dört Peynirli</span><span class="item-dots"></span><span class="item-price">400 ₺</span></div><div class="menu-item"><span class="item-name">Karışık Tost</span><span class="item-dots"></span><span class="item-price">550 ₺</span></div><div class="menu-item"><span class="item-name">Pesto Peynir Domates</span><span class="item-dots"></span><span class="item-price">400 ₺</span></div></div></section>
-        <section class="category-section" id="kahve"><div class="category-header"><span class="category-icon">☕</span><h2 class="category-title">Sıcak Kahveler</h2></div><div class="menu-items"><div class="menu-item"><span class="item-name">Americano</span><span class="item-dots"></span><span class="item-price">230 ₺</span></div><div class="menu-item"><span class="item-name">Cappuccino</span><span class="item-dots"></span><span class="item-price">270 ₺</span></div><div class="menu-item"><span class="item-name">Çay</span><span class="item-dots"></span><span class="item-price">80 ₺</span></div><div class="menu-item"><span class="item-name">Double Espresso</span><span class="item-dots"></span><span class="item-price">180 ₺</span></div><div class="menu-item"><span class="item-name">Espresso</span><span class="item-dots"></span><span class="item-price">140 ₺</span></div><div class="menu-item"><span class="item-name">Flat White</span><span class="item-dots"></span><span class="item-price">300 ₺</span></div><div class="menu-item"><span class="item-name">Latte</span><span class="item-dots"></span><span class="item-price">280 ₺</span></div><div class="menu-item"><span class="item-name">Türk Kahvesi</span><span class="item-dots"></span><span class="item-price">180 ₺</span></div><div class="menu-item"><span class="item-name">White Mocha</span><span class="item-dots"></span><span class="item-price">300 ₺</span></div></div></section>
+        
+        <section class="category-section" id="kahve">
+            <div class="category-header"><span class="category-icon">☕</span><h2 class="category-title">Sıcak Kahveler</h2></div>
+            <div class="complimentary-box">✨ Odalarımızdaki çay ve kahve çeşitleri ikramımızdır.</div>
+            <div class="menu-items">
+                <div class="menu-item"><span class="item-name">Americano</span><span class="item-dots"></span><span class="item-price">230 ₺</span></div>
+                <div class="menu-item"><span class="item-name">Cappuccino</span><span class="item-dots"></span><span class="item-price">270 ₺</span></div>
+                <div class="menu-item"><span class="item-name">Çay</span><span class="item-dots"></span><span class="item-price">80 ₺</span></div>
+                <div class="menu-item"><span class="item-name">Double Espresso</span><span class="item-dots"></span><span class="item-price">180 ₺</span></div>
+                <div class="menu-item"><span class="item-name">Espresso</span><span class="item-dots"></span><span class="item-price">140 ₺</span></div>
+                <div class="menu-item"><span class="item-name">Flat White</span><span class="item-dots"></span><span class="item-price">300 ₺</span></div>
+                <div class="menu-item"><span class="item-name">Latte</span><span class="item-dots"></span><span class="item-price">280 ₺</span></div>
+                <div class="menu-item"><span class="item-name">Türk Kahvesi</span><span class="item-dots"></span><span class="item-price">180 ₺</span></div>
+                <div class="menu-item"><span class="item-name">White Mocha</span><span class="item-dots"></span><span class="item-price">300 ₺</span></div>
+            </div>
+        </section>
+        
         <section class="category-section" id="soft"><div class="category-header"><span class="category-icon">🥤</span><h2 class="category-title">Soğuk İçecekler</h2></div><div class="menu-items"><div class="menu-item"><span class="item-name">Alkolsüz Mojito</span><span class="item-dots"></span><span class="item-price">180 ₺</span></div><div class="menu-item"><span class="item-name">Ananas Suyu</span><span class="item-dots"></span><span class="item-price">150 ₺</span></div><div class="menu-item"><span class="item-name">Ayran</span><span class="item-dots"></span><span class="item-price">180 ₺</span></div><div class="menu-item"><span class="item-name">Ayran Erikli</span><span class="item-dots"></span><span class="item-price">180 ₺</span></div><div class="menu-item"><span class="item-name">Ayran Fesleğenli</span><span class="item-dots"></span><span class="item-price">180 ₺</span></div><div class="menu-item"><span class="item-name">Churchill</span><span class="item-dots"></span><span class="item-price">180 ₺</span></div><div class="menu-item"><span class="item-name">Cola</span><span class="item-dots"></span><span class="item-price">180 ₺</span></div><div class="menu-item"><span class="item-name">Cola Zero</span><span class="item-dots"></span><span class="item-price">180 ₺</span></div><div class="menu-item"><span class="item-name">Cool Lime</span><span class="item-dots"></span><span class="item-price">200 ₺</span></div><div class="menu-item"><span class="item-name">Çilekli Limonata</span><span class="item-dots"></span><span class="item-price">180 ₺</span></div><div class="menu-item"><span class="item-name">Elma Suyu</span><span class="item-dots"></span><span class="item-price">150 ₺</span></div><div class="menu-item"><span class="item-name">Fanta</span><span class="item-dots"></span><span class="item-price">180 ₺</span></div><div class="menu-item"><span class="item-name">Ice Tea Limon</span><span class="item-dots"></span><span class="item-price">180 ₺</span></div><div class="menu-item"><span class="item-name">Ice Tea Şeftali</span><span class="item-dots"></span><span class="item-price">180 ₺</span></div><div class="menu-item"><span class="item-name">Limonata</span><span class="item-dots"></span><span class="item-price">180 ₺</span></div><div class="menu-item"><span class="item-name">Portakal Suyu</span><span class="item-dots"></span><span class="item-price">150 ₺</span></div><div class="menu-item"><span class="item-name">Redbull</span><span class="item-dots"></span><span class="item-price">250 ₺</span></div><div class="menu-item"><span class="item-name">Soda Sade</span><span class="item-dots"></span><span class="item-price">150 ₺</span></div><div class="menu-item"><span class="item-name">Sprite</span><span class="item-dots"></span><span class="item-price">180 ₺</span></div><div class="menu-item"><span class="item-name">Su 0,5 lt</span><span class="item-dots"></span><span class="item-price">80 ₺</span></div><div class="menu-item"><span class="item-name">Su 1 lt</span><span class="item-dots"></span><span class="item-price">125 ₺</span></div><div class="menu-item"><span class="item-name">Tonik</span><span class="item-dots"></span><span class="item-price">150 ₺</span></div><div class="menu-item"><span class="item-name">Vişne Suyu</span><span class="item-dots"></span><span class="item-price">150 ₺</span></div></div></section>
         <section class="category-section" id="frozen"><div class="category-header"><span class="category-icon">🧊</span><h2 class="category-title">Frozenler</h2></div><div class="menu-items"><div class="menu-item"><span class="item-name">Detox Hangover</span><span class="item-dots"></span><span class="item-price">260 ₺</span></div><div class="menu-item"><span class="item-name">Kavun</span><span class="item-dots"></span><span class="item-price">260 ₺</span></div><div class="menu-item"><span class="item-name">Kuzukulağı</span><span class="item-dots"></span><span class="item-price">260 ₺</span></div><div class="menu-item"><span class="item-name">Passion Orman Meyveli</span><span class="item-dots"></span><span class="item-price">260 ₺</span></div></div></section>
         <section class="category-section" id="biralar"><div class="category-header"><span class="category-icon">🍺</span><h2 class="category-title">Biralar</h2></div><div class="menu-items"><div class="menu-item"><span class="item-name">Carlsberg 33 cl</span><span class="item-dots"></span><span class="item-price">400 ₺</span></div><div class="menu-item"><span class="item-name">Corona 35 cl</span><span class="item-dots"></span><span class="item-price">550 ₺</span></div><div class="menu-item"><span class="item-name">Heineken 33 cl</span><span class="item-dots"></span><span class="item-price">550 ₺</span></div><div class="menu-item"><span class="item-name">Tuborg 33 cl</span><span class="item-dots"></span><span class="item-price">400 ₺</span></div><div class="menu-item"><span class="item-name">Weihenstephaner 33 cl</span><span class="item-dots"></span><span class="item-price">580 ₺</span></div></div></section>
@@ -95,8 +229,70 @@
         <section class="category-section" id="siseler"><div class="category-header"><span class="category-icon">🥃</span><h2 class="category-title">Şişeler</h2></div><div class="menu-items"><div class="menu-item"><span class="item-name">Absolut</span><span class="item-dots"></span><span class="item-price">8.000 ₺</span></div><div class="menu-item"><span class="item-name">Baileys</span><span class="item-dots"></span><span class="item-price">8.000 ₺</span></div><div class="menu-item"><span class="item-name">Beefeater</span><span class="item-dots"></span><span class="item-price">8.000 ₺</span></div><div class="menu-item"><span class="item-name">Belvedere</span><span class="item-dots"></span><span class="item-price">13.000 ₺</span></div><div class="menu-item"><span class="item-name">Chivas 12</span><span class="item-dots"></span><span class="item-price">8.500 ₺</span></div><div class="menu-item"><span class="item-name">Chivas 18</span><span class="item-dots"></span><span class="item-price">13.000 ₺</span></div><div class="menu-item"><span class="item-name">Jägermeister</span><span class="item-dots"></span><span class="item-price">8.000 ₺</span></div><div class="menu-item"><span class="item-name">Malfy</span><span class="item-dots"></span><span class="item-price">11.000 ₺</span></div><div class="menu-item"><span class="item-name">Royal Salute</span><span class="item-dots"></span><span class="item-price">21.000 ₺</span></div><div class="menu-item"><span class="item-name">Skinos</span><span class="item-dots"></span><span class="item-price">8.000 ₺</span></div></div></section>
         <section class="category-section" id="tekila"><div class="category-header"><span class="category-icon">🌵</span><h2 class="category-title">Tekila</h2></div><div class="menu-items"><div class="menu-item"><span class="item-name">Don Julio</span><span class="item-dots"></span><span class="item-price">12.000 ₺</span></div><div class="menu-item"><span class="item-name">Olmeca</span><span class="item-dots"></span><span class="item-price">10.000 ₺</span></div><div class="menu-item"><span class="item-name">Patrón</span><span class="item-dots"></span><span class="item-price">18.000 ₺</span></div></div></section>
         <section class="category-section" id="tatli"><div class="category-header"><span class="category-icon">🍰</span><h2 class="category-title">Tatlı</h2></div><div class="menu-items"><div class="menu-item"><span class="item-name">Meyve</span><span class="item-dots"></span><span class="item-price">500 ₺</span></div><div class="menu-item"><span class="item-name">Serpme Meyve</span><span class="item-dots"></span><span class="item-price">800 ₺</span></div></div></section>
-        <section class="category-section" id="minibar"><div class="category-header"><span class="category-icon">🍫</span><h2 class="category-title">Mini Bar</h2></div><div class="menu-items"><div class="menu-item"><span class="item-name">Coca Cola</span><span class="item-dots"></span><span class="item-price">180 ₺</span></div><div class="menu-item"><span class="item-name">Jelibon</span><span class="item-dots"></span><span class="item-price">30 ₺</span></div><div class="menu-item"><span class="item-name">Karışık Lüx Çerez</span><span class="item-dots"></span><span class="item-price">230 ₺</span></div><div class="menu-item"><span class="item-name">Raffaello</span><span class="item-dots"></span><span class="item-price">230 ₺</span></div><div class="menu-item"><span class="item-name">Soda</span><span class="item-dots"></span><span class="item-price">150 ₺</span></div><div class="menu-item"><span class="item-name">Su</span><span class="item-dots"></span><span class="item-price">80 ₺</span></div></div></section>
+        
+        <section class="category-section" id="minibar">
+            <div class="category-header"><span class="category-icon">🍫</span><h2 class="category-title">Mini Bar</h2></div>
+            <div class="complimentary-box">✨ Odalarımızdaki çay ve kahve çeşitleri ikramımızdır.</div>
+            <div class="menu-items">
+                <div class="menu-item"><span class="item-name">Coca Cola</span><span class="item-dots"></span><span class="item-price">180 ₺</span></div>
+                <div class="menu-item"><span class="item-name">Jelibon</span><span class="item-dots"></span><span class="item-price">30 ₺</span></div>
+                <div class="menu-item"><span class="item-name">Karışık Lüx Çerez</span><span class="item-dots"></span><span class="item-price">230 ₺</span></div>
+                <div class="menu-item"><span class="item-name">Raffaello</span><span class="item-dots"></span><span class="item-price">230 ₺</span></div>
+                <div class="menu-item"><span class="item-name">Soda</span><span class="item-dots"></span><span class="item-price">150 ₺</span></div>
+                <div class="menu-item"><span class="item-name">Su</span><span class="item-dots"></span><span class="item-price">80 ₺</span></div>
+            </div>
+        </section>
     </main>
-    <footer class="footer"><div class="footer-icon">✦</div><p style="font-size: 1.1rem; color: var(--accent); margin-bottom: 10px;">Afiyet Olsun!</p><p>RUWAIS</p><p style="opacity: 0.5; margin-top: 15px;">© 2024</p></footer>
+
+    <footer class="footer">
+        <div class="footer-icon">✦</div>
+        <p style="font-size: 1.1rem; color: var(--accent); margin-bottom: 15px;">Afiyet Olsun!</p>
+        <p style="margin-bottom: 10px; font-weight: 500;">RUWAIS HOTEL</p>
+        <p style="margin-bottom: 5px;">
+            <a class="footer-link" href="tel:05437107272">📞 İletişim: 0543 710 72 72</a>
+        </p>
+        <p>
+            <a class="footer-link" href="https://www.google.com/search?sca_esv=f8991862dc286373&rlz=1C1CHBD_trTR1109TR1109&sxsrf=APpeQnuV1RxzCIhpChxHImLvcBTEnbUAvg:1782245820305&q=RUWA%C4%B0SOTEL&si=APenkKm7iecQ4G6P-TsbSMFKIQtv3EFIqRAFw-i8uEbk55Z-_1U44qGaB18mIo7Fh8dw6gLJk6guSmpSCzmL8WWC2LjAGBwyInfTdDV1pjJ-0Mr8YK2OdjA%3D" target="_blank">📍 Konum ve Harita Bilgisi</a>
+        </p>
+        <p style="opacity: 0.5; margin-top: 20px;">© 2026</p>
+    </footer>
+
+    <a href="https://www.google.com/search?sca_esv=f8991862dc286373&rlz=1C1CHBD_trTR1109TR1109&sxsrf=APpeQnuV1RxzCIhpChxHImLvcBTEnbUAvg:1782245820305&q=RUWA%C4%B0SOTEL&si=APenkKm7iecQ4G6P-TsbSMFKIQtv3EFIqRAFw-i8uEbk55Z-_1U44qGaB18mIo7Fh8dw6gLJk6guSmpSCzmL8WWC2LjAGBwyInfTdDV1pjJ-0Mr8YK2OdjA%3D" target="_blank" class="review-float-btn">
+        ⭐ Yorum Yap
+    </a>
+
+    <script>
+        const sections = document.querySelectorAll('.category-section');
+        const navBtns = document.querySelectorAll('.nav-btn');
+        const navContainer = document.querySelector('.category-nav');
+
+        window.addEventListener('scroll', () => {
+            let currentSectionId = 'top';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 120;
+                if (window.scrollY >= sectionTop) {
+                    currentSectionId = section.getAttribute('id');
+                }
+            });
+
+            navBtns.forEach(btn => {
+                if (btn.getAttribute('href') === `#${currentSectionId}`) {
+                    if (!btn.classList.contains('active')) {
+                        navBtns.forEach(b => b.classList.remove('active'));
+                        btn.classList.add('active');
+                        
+                        const containerWidth = navContainer.offsetWidth;
+                        const btnLeft = btn.offsetLeft;
+                        const btnWidth = btn.offsetWidth;
+                        navContainer.scrollTo({
+                            left: btnLeft - (containerWidth / 2) + (btnWidth / 2),
+                            behavior: 'smooth'
+                        });
+                    }
+                }
+            });
+        });
+    </script>
 </body>
 </html>
